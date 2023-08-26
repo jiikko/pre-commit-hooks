@@ -2,6 +2,7 @@
 
 require_relative "pre_commit_fake_gem/version"
 require_relative "pre_commit_fake_gem/missing_migration_file_service"
+require_relative "pre_commit_fake_gem/outdated_schema_service"
 
 module PreCommitFakeGem
   class Error < StandardError; end

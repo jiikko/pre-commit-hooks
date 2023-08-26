@@ -1,6 +1,21 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-file_paths = ARGV
-puts file_paths.class
-puts file_paths
+current_dir = File.dirname(__FILE__)
+lib_path = File.expand_path('../lib', current_dir)
+$LOAD_PATH.unshift(lib_path)
+
+require "pre_commit_fake_gem"
+
+EXIT_SUCCESS = 0
+EXIT_FAILURE = 1
+
+begin
+  PreCommitFakeGem::OutdatedSchemaService.new(ARGV).execute
+  exit(EXIT_SUCCESS)
+rescue PreCommitFakeGem::OutdatedSchemaService::OutdatedSchemaError
+  $stderr.puts "db/schema.rb is outdated. Please run `rake db:migrate`"
+  exit(EXIT_FAILURE)
+rescue PreCommitFakeGem::OutdatedSchemaService::NotFoundMigrationVersion
+  exit(EXIT_FAILURE)
+end

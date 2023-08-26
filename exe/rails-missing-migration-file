@@ -15,6 +15,7 @@ EXIT_NOT_FOUND_VERSION = 3
 
 begin
   PreCommitFakeGem::MissingMigrationFileService.new(ARGV).execute
+  exit(EXIT_SUCCESS)
 rescue PreCommitFakeGem::MissingMigrationFileService::GitUncontrolledFileError
   exit(EXIT_FAILURE)
 rescue PreCommitFakeGem::MissingMigrationFileService::NotSupportedFileError
