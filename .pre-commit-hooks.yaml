@@ -1,0 +1,6 @@
+- id: bar
+  description: test!!!!
+  entry: foo
+  files: \.rb$
+  language: ruby
+  name: Validate Bolt plans

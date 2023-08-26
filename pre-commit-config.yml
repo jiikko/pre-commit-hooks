@@ -1,0 +1,4 @@
+- repo: ../pre-commit-hooks
+  rev: master
+  hooks:
+    - id: foo
