@@ -1,2 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
+
+file_paths = ARGV
+puts file_paths.class
+puts file_paths
