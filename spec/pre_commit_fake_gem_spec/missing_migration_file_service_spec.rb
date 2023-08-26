@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 RSpec.describe PreCommitFakeGem::MissingMigrationFileService do
@@ -17,9 +19,9 @@ RSpec.describe PreCommitFakeGem::MissingMigrationFileService do
     context "when file is db/schema.rb" do
       let(:file_paths) { ["db/schema.rb"] }
 
-      context 'when version is not found' do
+      context "when version is not found" do
         before do
-          allow(service).to receive(:read_file) { '' }
+          allow(service).to receive(:read_file) { "" }
         end
 
         it "raises NotSupportedFileError" do
@@ -27,20 +29,20 @@ RSpec.describe PreCommitFakeGem::MissingMigrationFileService do
         end
       end
 
-      context 'when version is found' do
+      context "when version is found" do
         before do
           allow(service).to receive(:read_file)
-          allow(PreCommitFakeGem).to receive(:extract_migration_version) { '202_00101000000' }
+          allow(PreCommitFakeGem).to receive(:extract_migration_version) { "202_00101000000" }
         end
 
-        context 'when migration file is not under git control' do
+        context "when migration file is not under git control" do
           it "raises GitUncontrolledFileError" do
             expect(PreCommitFakeGem).to receive(:under_git_control?).with("db/migrate/202_00101000000*.rb") { false }
             expect { subject }.to raise_error(described_class::GitUncontrolledFileError)
           end
         end
 
-        context 'when migration file is under git control' do
+        context "when migration file is under git control" do
           it "does not raise GitUncontrolledFileError" do
             expect(PreCommitFakeGem).to receive(:under_git_control?).with("db/migrate/202_00101000000*.rb") { true }
             expect { subject }.not_to raise_error

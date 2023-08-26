@@ -11,10 +11,3 @@
   files: db/schema.rb
   language: ruby
   name: Ensure Corresponding Migration File for db/schema.rb is Committed to Git
-
-- id: rails-migration-schema-consistency
-  description: Check for version consistency between db/migrate/*.rb and db/schema.rb.
-  entry: rails-migration-schema-consistency
-  files: db/migrate/.+\.rb$, db/schema.rb
-  language: ruby
-  name: Ensure Version Consistency Between Migration Files and db/schema.rb

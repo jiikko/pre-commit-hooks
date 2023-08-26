@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 current_dir = File.dirname(__FILE__)
-lib_path = File.expand_path('../lib', current_dir)
+lib_path = File.expand_path("../lib", current_dir)
 $LOAD_PATH.unshift(lib_path)
 
 require "pre_commit_fake_gem"
@@ -14,7 +14,7 @@ begin
   PreCommitFakeGem::OutdatedSchemaService.new(ARGV).execute
   exit(EXIT_SUCCESS)
 rescue PreCommitFakeGem::OutdatedSchemaService::OutdatedSchemaError
-  $stderr.puts "db/schema.rb is outdated. Please run `rake db:migrate`"
+  warn "db/schema.rb is outdated. Please run `rake db:migrate`"
   exit(EXIT_FAILURE)
 rescue PreCommitFakeGem::OutdatedSchemaService::NotFoundMigrationVersion
   exit(EXIT_FAILURE)

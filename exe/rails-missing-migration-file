@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 current_dir = File.dirname(__FILE__)
-lib_path = File.expand_path('../lib', current_dir)
+lib_path = File.expand_path("../lib", current_dir)
 $LOAD_PATH.unshift(lib_path)
 
 require "pre_commit_fake_gem"
@@ -19,9 +19,9 @@ begin
 rescue PreCommitFakeGem::MissingMigrationFileService::GitUncontrolledFileError
   exit(EXIT_FAILURE)
 rescue PreCommitFakeGem::MissingMigrationFileService::NotSupportedFileError
-  $stderr.puts "This script only works with db/schema.rb"
+  warn "This script only works with db/schema.rb"
   exit(EXIT_UNSUPPORTED_FILE)
 rescue PreCommitFakeGem::MissingMigrationFileService::NotFoundMigrationVersion
-  $stderr.puts "Could not find migration version in db/schema.rb"
+  warn "Could not find migration version in db/schema.rb"
   exit(EXIT_NOT_FOUND_VERSION)
 end

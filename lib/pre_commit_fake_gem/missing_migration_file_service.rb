@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PreCommitFakeGem
   class MissingMigrationFileService
     class NotSupportedFileError < StandardError; end
@@ -8,6 +10,7 @@ module PreCommitFakeGem
     def initialize(file_paths)
       schema_path = file_paths.detect { |file_path| file_path == "db/schema.rb" }
       raise NotSupportedFileError unless schema_path
+
       @schema_path = schema_path
     end
 
@@ -17,7 +20,7 @@ module PreCommitFakeGem
       raise NotFoundMigrationVersion unless migration_version
 
       migration_file = "db/migrate/#{migration_version}*.rb"
-      raise GitUncontrolledFileError unless(PreCommitFakeGem.under_git_control?(migration_file))
+      raise GitUncontrolledFileError unless PreCommitFakeGem.under_git_control?(migration_file)
     end
 
     private

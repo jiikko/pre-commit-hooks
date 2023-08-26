@@ -16,6 +16,6 @@ module PreCommitFakeGem
   # @return [NilClass, String]
   def self.extract_migration_version(schema_body)
     matched = schema_body.match(/ActiveRecord::Schema\[[^\]]+\].define\(version: ([\d_]+)\) do/)
-    return matched && matched[1].gsub("_", "")
+    matched && matched[1].gsub("_", "")
   end
 end
