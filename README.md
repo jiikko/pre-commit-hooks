@@ -16,7 +16,7 @@ Add a file named .pre-commit-config.yaml into the root directory of your reposit
 
 ```yaml
 - repo: https://github.com/jiikko/pre-commit-hooks.git
-  rev: master
+  rev: 0.1.0
   hooks:
     - id: rails-outdated-schema
     - id: rails-missing-migration-file
