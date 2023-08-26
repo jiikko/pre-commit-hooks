@@ -1,20 +1,20 @@
 - id: rails-outdated-schema
   description: Check if db/schema.rb has been updated when new migration files are added.
-  entry: rails-outdated-schema.rb
+  entry: rails-outdated-schema
   files: db/migrate/*.rb
   language: ruby
   name: Ensure db/schema.rb is Updated When New Migrations are Added
 
 - id: rails-missing-migration-file
   description: Check if the migration file corresponding to schema.rb has been committed
-  entry: rails-missing-migration-file.rb
+  entry: rails-missing-migration-file
   files: db/schema.rb
   language: ruby
   name: Ensure Corresponding Migration File for db/schema.rb is Committed to Git
 
 - id: rails-migration-schema-consistency
   description: Check for version consistency between db/migrate/*.rb and db/schema.rb.
-  entry: rails-migration-schema-consistency.rb
+  entry: rails-migration-schema-consistency
   files: db/migrate/*.rb, db/schema.rb
   language: ruby
   name: Ensure Version Consistency Between Migration Files and db/schema.rb
