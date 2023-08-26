@@ -1,6 +1,7 @@
-- id: bar
-  description: test!!!!
-  entry: foo
-  files: \.rb$
+- id: rails-migration
+  additional_dependencies: ['git']
+  description: Check if the migration file corresponding to schema.rb has been committed
+  entry: rails-migration-validate.rb
+  files: db/schema.rb
   language: ruby
-  name: Validate Bolt plans
+  name: Validate db/schema.rb and migration files
