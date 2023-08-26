@@ -13,11 +13,18 @@ module PreCommitFakeGem
 
     # @return [void]
     def execute
-      migration_version = PreCommitFakeGem.extract_migration_version(File.read(@schema_path))
+      migration_version = PreCommitFakeGem.extract_migration_version(read_file)
       raise NotFoundMigrationVersion unless migration_version
 
       migration_file = "db/migrate/#{migration_version}*.rb"
       raise GitUncontrolledFileError unless(PreCommitFakeGem.under_git_control?(migration_file))
+    end
+
+    private
+
+    # @return [String]
+    def read_file
+      File.read(@schema_path)
     end
   end
 end

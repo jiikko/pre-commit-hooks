@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "pry"
 require "pre_commit_fake_gem"
 
 RSpec.configure do |config|
