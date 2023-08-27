@@ -7,12 +7,15 @@ require_relative "pre_commit_fake_gem/outdated_schema_service"
 module PreCommitFakeGem
   class Error < StandardError; end
 
+  # @param [String] migration_file
+  # @return [Boolean]
   def self.under_git_control?(migration_file)
     shell = "git ls-files --error-unmatch #{migration_file}"
     _stdout, _stderr, status = Open3.capture3(shell)
     status.exitstatus.zero?
   end
 
+  # @param [String] schema_body
   # @return [NilClass, String]
   def self.extract_migration_version(schema_body)
     matched = schema_body.match(/ActiveRecord::Schema\[[^\]]+\].define\(version: ([\d_]+)\) do/)
